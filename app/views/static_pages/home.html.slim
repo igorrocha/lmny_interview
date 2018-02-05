@@ -1,0 +1,7 @@
+h1 StaticPages#home
+p Find me in app/views/static_pages/home.html.slim
+
+- if admin_signed_in?
+  = link_to "Sign out", destroy_admin_session_path, method: :delete
+- else
+  = link_to "Admin sign in", new_admin_session_path

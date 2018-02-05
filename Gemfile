@@ -52,6 +52,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'annotate'
 gem 'slim-rails'
 gem 'paranoia'
-# gem 'cancancan'
-# gem 'devise'
+gem 'devise'
 gem 'simple_form'
