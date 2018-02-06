@@ -18,5 +18,16 @@
 require 'rails_helper'
 
 RSpec.describe Offer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { FactoryBot.build_stubbed(:offer) }
+  # let(:offer) { FactoryBot.build(:offer) }
+
+  # include_examples 'paranoia'
+
+
+  # RESPOND TO
+   [:url, :description, :starts_at, :ends_at, :premium, :status, :deleted_at].each do |attr|
+    it "should respond to #{attr}" do
+      expect(subject).to respond_to attr
+    end
+  end
 end

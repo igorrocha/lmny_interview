@@ -17,13 +17,11 @@
 
 FactoryBot.define do
   factory :offer do
-    advertiser_name "MyString"
-    url "MyString"
-    description "MyText"
-    starts_at "2018-02-06 01:28:31"
-    ends_at "2018-02-06 01:28:31"
-    premium false
-    status 1
-    deleted_at "2018-02-06 01:28:31"
+    sequence(:advertiser_name) { Faker::Company.name }
+    sequence(:url) { Faker::Internet.url }
+    sequence(:description) { Faker::Company.catch_phrase }
+    starts_at { Time.zone.now }
+    ends_at nil
+    premium { ['true', 'false'].sample }
   end
 end

@@ -1,0 +1,9 @@
+ ☐ more admin model tests (remember paranoia)
+ ☐ more offer model tests (remember paranoia)
+ ☐ devise authentication to manage offers
+ ☐ offer controller tests
+ ☐ improve offer scaffolded views a little
+ ☐ static_pages controller, home action
+ ☐ static_pages controller tests
+ ☐ offer view partials to be rendered at home
+ ☐ home view (include bootstrap)
