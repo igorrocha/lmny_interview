@@ -19,7 +19,6 @@ require 'rails_helper'
 
 RSpec.describe Admin, type: :model do
   subject { FactoryBot.build_stubbed(:admin) }
-  # let(:admin) { FactoryBot.build(:admin) }
 
   # include_examples 'paranoia'
 
