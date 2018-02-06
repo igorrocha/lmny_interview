@@ -47,9 +47,9 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'timecop'
   # gem 'shoulda-callback-matchers'
   # gem 'database_cleaner'
-  # gem 'timecop'
   # gem 'rails-controller-testing'
 end
 
@@ -58,7 +58,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'annotate'
 gem 'slim-rails'
-gem 'paranoia'
 gem 'devise'
 gem 'simple_form'
 gem 'rails-controller-testing'

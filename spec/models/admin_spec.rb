@@ -12,7 +12,6 @@
 #  last_sign_in_ip    :inet
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  deleted_at         :datetime
 #
 
 require 'rails_helper'
@@ -20,11 +19,8 @@ require 'rails_helper'
 RSpec.describe Admin, type: :model do
   subject { FactoryBot.build_stubbed(:admin) }
 
-  # include_examples 'paranoia'
-
-
   # RESPOND TO
-   [:email, :encrypted_password, :deleted_at, :password, :password_confirmation].each do |attr|
+   [:email, :encrypted_password, :password, :password_confirmation].each do |attr|
     it "should respond to #{attr}" do
       expect(subject).to respond_to attr
     end

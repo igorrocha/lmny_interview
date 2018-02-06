@@ -1,5 +1,5 @@
- ☐ more admin model tests (remember paranoia)
- ☐ more offer model tests (remember paranoia)
+ ☐ more admin model tests
+ ☐ more offer model tests
  ☐ devise authentication to manage offers
  ☐ offer controller tests
  ☐ improve offer scaffolded views a little

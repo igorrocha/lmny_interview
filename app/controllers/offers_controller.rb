@@ -69,6 +69,6 @@ class OffersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
-      params.require(:offer).permit(:advertiser_name, :url, :description, :starts_at, :ends_at, :premium, :status)
+      params.require(:offer).permit(:advertiser_name, :url, :description, :starts_at, :ends_at, :premium, :status, :forced_status)
     end
 end

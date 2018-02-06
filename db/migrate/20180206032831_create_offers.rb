@@ -8,7 +8,6 @@ class CreateOffers < ActiveRecord::Migration[5.1]
       t.datetime :ends_at
       t.boolean :premium
       t.integer :status
-      t.datetime :deleted_at
 
       t.timestamps
     end
