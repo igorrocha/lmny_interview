@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Advertiser name:
+  = @offer.advertiser_name
+p
+  strong Url:
+  = @offer.url
+p
+  strong Description:
+  = @offer.description
+p
+  strong Starts at:
+  = @offer.starts_at
+p
+  strong Ends at:
+  = @offer.ends_at
+p
+  strong Premium:
+  = @offer.premium
+
+=> link_to 'Edit', edit_offer_path(@offer)
+'|
+=< link_to 'Back', offers_path

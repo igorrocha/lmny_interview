@@ -1,0 +1,29 @@
+h1 Listing offers
+
+table
+  thead
+    tr
+      th id
+      th name
+      th url
+      th status
+      th actions
+      th
+      th
+      th
+
+  tbody
+    - @offers.each do |offer|
+      tr
+        td = offer.id
+        td = offer.advertiser_name
+        td = offer.url
+        td = offer.status
+        td = link_to '[edit]', edit_offer_path(offer)
+        - new_status = offer.enabled? ? 'disabled' : 'enabled'
+        td = link_to "[#{new_status[0..-2]}]", offer_path(offer, :offer => { :status => "#{new_status}"}), :method => :put
+        td = link_to '[destroy]', offer, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Offer', new_offer_path

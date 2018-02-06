@@ -1,0 +1,13 @@
+= simple_form_for(@offer) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :advertiser_name
+    = f.input :url
+    = f.input :description
+    = f.input :starts_at
+    = f.input :ends_at
+    = f.input :premium
+
+  .form-actions
+    = f.button :submit
