@@ -25,49 +25,81 @@ require 'rails_helper'
 
 RSpec.describe OffersController, type: :controller do
 
+  before(:each) do
+    @admin = FactoryBot.create(:admin)
+    request.env["devise.mapping"] = Devise.mappings[:admin]
+    sign_in @admin
+  end
+
+  after(:each) do
+    sign_out @admin
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Offer. As you add validations to Offer, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  def valid_attributes
+    {
+      offer: 
+        {
+          advertiser_name: "Rohan-Terry",
+          url: "http://kihn.name/sydni",
+          description: "Automated eco-centric migration",
+          starts_at: Time.zone.now - 1.day,
+          ends_at: Time.zone.now + 1.year,
+          premium: "false"
+        }
+    }
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  def invalid_attributes
+    {
+      offer: 
+        {
+          advertiser_name: "McCullough Inc"
+        }
+    }
+  end
+
+  def valid_update_attributes
+    {
+      offer: {
+        description: "We do awesome stuff"
+      }
+    }
+  end
+
+  def invalid_update_attributes
+    {
+      offer: {
+        url: "this-is-not-a-url"
+      }
+    }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # OffersController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      offer = Offer.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_success
-    end
-  end
-
-  describe "GET #show" do
-    it "returns a success response" do
-      offer = Offer.create! valid_attributes
-      get :show, params: {id: offer.to_param}, session: valid_session
+      offer = Offer.create! valid_attributes[:offer]
+      get :index, params: {}
       expect(response).to be_success
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_success
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      offer = Offer.create! valid_attributes
-      get :edit, params: {id: offer.to_param}, session: valid_session
+      offer = Offer.create! valid_attributes[:offer]
+      get :edit, params: {id: offer.id}
       expect(response).to be_success
     end
   end
@@ -76,19 +108,19 @@ RSpec.describe OffersController, type: :controller do
     context "with valid params" do
       it "creates a new Offer" do
         expect {
-          post :create, params: {offer: valid_attributes}, session: valid_session
+          post :create, params: valid_attributes
         }.to change(Offer, :count).by(1)
       end
 
-      it "redirects to the created offer" do
-        post :create, params: {offer: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Offer.last)
+      it "redirects to the offers list" do
+        post :create, params: valid_attributes
+        expect(response).to redirect_to(offers_url)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {offer: invalid_attributes}, session: valid_session
+        post :create, params: invalid_attributes
         expect(response).to be_success
       end
     end
@@ -96,28 +128,33 @@ RSpec.describe OffersController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested offer" do
-        offer = Offer.create! valid_attributes
-        put :update, params: {id: offer.to_param, offer: new_attributes}, session: valid_session
+        offer = Offer.create! valid_attributes[:offer]
+        put :update, params: valid_update_attributes.merge!(id: offer.id)
         offer.reload
-        skip("Add assertions for updated state")
+        expect(offer.description).to eq(valid_update_attributes[:offer][:description])
       end
 
-      it "redirects to the offer" do
-        offer = Offer.create! valid_attributes
-        put :update, params: {id: offer.to_param, offer: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(offer)
+      it "redirects to the offers list" do
+        offer = Offer.create! valid_attributes[:offer]
+        put :update, params: valid_update_attributes.merge!(id: offer.id)
+        expect(response).to redirect_to(offers_url)
       end
     end
 
     context "with invalid params" do
+
+      it "doesn't update the requested offer" do
+        offer = Offer.create! valid_attributes[:offer]
+        put :update, params: invalid_update_attributes.merge!(id: offer.id)
+        offer.reload
+        expect(offer.description).to eq(valid_attributes[:offer][:description])
+      end
+
       it "returns a success response (i.e. to display the 'edit' template)" do
-        offer = Offer.create! valid_attributes
-        put :update, params: {id: offer.to_param, offer: invalid_attributes}, session: valid_session
+        offer = Offer.create! valid_attributes[:offer]
+        put :update, params: invalid_update_attributes.merge!(id: offer.id)
         expect(response).to be_success
       end
     end
@@ -125,15 +162,15 @@ RSpec.describe OffersController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested offer" do
-      offer = Offer.create! valid_attributes
+      offer = Offer.create! valid_attributes[:offer]
       expect {
-        delete :destroy, params: {id: offer.to_param}, session: valid_session
+        delete :destroy, params: {id: offer.to_param}
       }.to change(Offer, :count).by(-1)
     end
 
     it "redirects to the offers list" do
-      offer = Offer.create! valid_attributes
-      delete :destroy, params: {id: offer.to_param}, session: valid_session
+      offer = Offer.create! valid_attributes[:offer]
+      delete :destroy, params: {id: offer.to_param}
       expect(response).to redirect_to(offers_url)
     end
   end

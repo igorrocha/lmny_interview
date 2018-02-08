@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
   before_action :set_offer, only: [:edit, :update, :destroy]
+  before_action :authenticate_admin!
 
   # GET /offers
   # GET /offers.json
