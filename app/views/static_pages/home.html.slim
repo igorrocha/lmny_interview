@@ -1,10 +1,12 @@
+.login
+  - if admin_signed_in?
+    = link_to "Manage offers", offers_path
+    = link_to "Sign out", destroy_admin_session_path, method: :delete
+  - else
+    = link_to "Admin sign in", new_admin_session_path
+
 .container
   .row
     = render @premium_offers
     = render @regular_offers
 
-.login.text-center
-  - if admin_signed_in?
-    = link_to "Sign out", destroy_admin_session_path, method: :delete
-  - else
-    = link_to "Admin sign in", new_admin_session_path

@@ -35,6 +35,16 @@ class Offer < ApplicationRecord
 
   before_save :update_status
   
+  def update_status
+    unless self.forced_status? && self.disabled?
+      if self.ends_at?
+        self.status = self.ends_at > Time.zone.now ? 'enabled' : 'disabled'
+      else
+        self.status = 'enabled'
+      end
+    end
+  end
+
   private
 
     # reference: https://coderwall.com/p/ztig5g/validate-urls-in-rails
@@ -46,16 +56,7 @@ class Offer < ApplicationRecord
     def set_default_status
       self.status = 'disabled'
       self.forced_status = false
-      update_status
+      self.update_status
     end
 
-    def update_status
-      unless self.forced_status? && self.disabled?
-        if self.ends_at?
-          self.status = self.ends_at > Time.zone.now ? 'enabled' : 'disabled'
-        else
-          self.status = 'enabled'
-        end
-      end
-    end
 end
