@@ -46,6 +46,7 @@ class Offer < ApplicationRecord
     def set_default_status
       self.status = 'disabled'
       self.forced_status = false
+      update_status
     end
 
     def update_status
