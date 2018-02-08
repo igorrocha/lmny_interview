@@ -1,0 +1,5 @@
+.col-md-6
+  .offer-card class="#{if offer.premium? then 'premium'}"
+    h1 = offer.advertiser_name
+    h2 = offer.description
+    = link_to "Shop Now", offer.url, class: 'button', target: :_blank

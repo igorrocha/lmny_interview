@@ -1,0 +1,52 @@
+@import "settings"
+
+.offer-card
+  text-align: center
+  padding: 18px 13px
+  margin: 30px 10px
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5)
+  height: 35vh
+  display: flex
+  flex-direction: column
+  justify-content: space-evenly
+  position: relative
+  h1
+    font-size: 38px
+    font-weight: bold
+  h2
+    font-size: 22px
+    color: $dark-green
+  a.button
+    padding: 12px 45px
+    border-radius: 2px
+    text-transform: uppercase
+    font-weight: bold
+    font-size: 16px
+    cursor: pointer
+    border: 0
+    background-color: $medium-blue
+    width: 70%
+    position: absolute
+    bottom: -10px
+    right: 50%
+    transform: translateX(50%)
+    transition: bottom 0.3s ease, background-color 0.3s ease
+    text-decoration: none
+    color: white
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5)
+    &:hover
+      bottom: -7px
+      background-color: $lime-green
+  &.premium
+    &:before
+      content: 'premium!'
+      color: white
+      font-weight: bold
+      font-size: 16px
+      padding: 4px 6px
+      position: absolute
+      border: 1px solid $medium-blue
+      border-radius: 3px
+      background-color: $light-green
+      top: 0px
+      right: 0px

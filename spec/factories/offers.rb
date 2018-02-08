@@ -17,9 +17,40 @@
 
 FactoryBot.define do
   factory :offer do
-    sequence(:advertiser_name) { Faker::Company.name }
-    sequence(:url) { Faker::Internet.url }
-    sequence(:description) { Faker::Company.catch_phrase }
+    advertisers = [
+      "Walmart",
+      "Kohls",
+      "Ebay",
+      "Amazon",
+      "Sephora",
+      "BestBuy",
+      "Groupon",
+      "Macys",
+      "WholeFoods",
+      "Jewel-Osco",
+      "Starbucks",
+      "IKEA",
+      "Dominicks",
+      "Teleflora",
+      "Nike",
+      "Adidas",
+      "Verizon",
+      "Sprint",
+      "Comcast",
+      "Vimeo",
+      "Orbitz",
+      "Hertz",
+      "FitBit",
+      "Apple",
+      "Microsoft",
+      "GAP",
+      "Zipcar",
+      "PokerGo"
+    ]
+
+    sequence(:advertiser_name) { |n| "#{advertisers.sample + n.to_s}" }
+    sequence(:url) { "https://#{self.advertiser_name.downcase}.com" }
+    sequence(:description) { "Up To #{rand(10.0..15.0).round(1)}\% Cashback!" }
     starts_at { Time.zone.now }
     ends_at { Time.zone.now + 1.month }
     premium { ['true', 'false'].sample }

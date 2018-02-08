@@ -2,7 +2,7 @@
  ✔ devise authentication to manage offers @done (18-02-08 03:04)
  ✔ offer controller tests @done (18-02-08 03:04)
  ☐ improve offer scaffolded views a little
- ☐ static_pages controller, home action
- ☐ static_pages controller tests
- ☐ offer view partials to be rendered at home
- ☐ home view (include bootstrap)
+ ✔ static_pages controller, home action @done (18-02-08 05:06)
+ ✔ static_pages controller tests @done (18-02-08 05:06)
+ ✔ offer view partials to be rendered at home @done (18-02-08 05:06)
+ ✔ home view (include bootstrap) @done (18-02-08 05:06)
